@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 16:07:32 by adaloui           #+#    #+#             */
-/*   Updated: 2021/10/15 16:21:00 by adaloui          ###   ########.fr       */
+/*   Updated: 2021/10/15 16:59:22 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include "libft/libft.h"
+# include <fcntl.h>
 # include <string.h>
 # include <stdlib.h>
 
