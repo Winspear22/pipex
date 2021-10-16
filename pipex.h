@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 16:07:32 by adaloui           #+#    #+#             */
-/*   Updated: 2021/10/16 18:51:59 by adaloui          ###   ########.fr       */
+/*   Updated: 2021/10/16 22:08:35 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,30 @@
 # include <string.h>
 # include <stdlib.h>
 
-typedef struct s_command
+typedef struct s_cmd_data
 {
-    char    *file;
-    char    *file2;
-    char    **argv;
-    char    **argv2;
-}   t_command;
+	char	*file;
+	char	*file2;
+	char	**argv;
+	char	**argv2;
+}				t_cmd_data;
 
 typedef struct s_fd
 {
-    int     fd_in;
-    int     fd_out;
-    t_command   chemin;
-}   t_fd;
+	int				fd_in;
+	int				fd_out;
+	t_cmd_data		chemin;
+}				t_fd;
 
-int	check_arg(int argc, char **argv);
-int	fd_initialisation(t_fd *fd, int argc, char **argv);
-int	paths_initialisation(t_fd *fd, int argc, char **argv, char **envp);
+int			check_arg(int argc, char **argv);
+int			fd_initialisation(t_fd *fd, int argc, char **argv);
+int			paths_initialisation(t_fd *fd, int argc, char **argv, char **envp);
 
 static char	**get_paths(char **envp);
-t_command init_cmdlist(int argc, char **argv,char **envp);
+t_cmd_data	get_all_cmd_and_files(int argc, char **argv, char **envp);
 
-void	exec_cmd(t_fd *fd);
+void		command_execution(t_fd *fd);
+
+char		**get_cmd_paths(char **envp);
 
 #endif

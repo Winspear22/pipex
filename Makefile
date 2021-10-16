@@ -6,17 +6,17 @@
 #    By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/15 16:07:41 by adaloui           #+#    #+#              #
-#    Updated: 2021/10/16 17:39:52 by adaloui          ###   ########.fr        #
+#    Updated: 2021/10/16 21:44:13 by adaloui          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 
-SRC = main.c ft_check_and_init_fd.c ft_search_command.c ft_execute_command.c 
+SRC = main.c ft_check_and_init_fd.c ft_search_command.c ft_execute_command.c ft_get_paths.c
 
 OBJ = *.o
 
-FLAGS =  -Wall -Wextra -Werror
+FLAGS =  -fsanitize=address -g3 -Wall -Wextra -Werror
 
 LIBFT_A = libft.a
 LIBFT_DOSSIER = libft/

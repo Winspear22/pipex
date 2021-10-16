@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_get_paths.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/15 16:07:49 by adaloui           #+#    #+#             */
-/*   Updated: 2021/10/16 22:02:34 by adaloui          ###   ########.fr       */
+/*   Created: 2021/10/16 21:43:13 by adaloui           #+#    #+#             */
+/*   Updated: 2021/10/16 22:02:08 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(int argc, char **argv, char **envp)
+char	**get_cmd_paths(char **envp)
 {
-	t_fd	fd;
+	char	**paths;
+	int		i;
+	int		j;
 
-	if (check_arg(argc, argv) == 0)
-		return (0);
-	if (fd_initialisation(&fd, argc, argv) == 0)
-		return (0);
-	if (paths_initialisation(&fd, argc, argv, envp) == 0)
-		return (0);
-	command_execution(&fd);
+	i = -1;
+	j = 0;
+	while (envp[++i])
+	{
+		j = 0;
+		while (envp[i][j])
+		{
+			if (ft_strnstr(&envp[i][j], "PATH", 10))
+			{
+				while (envp[i][j] != '/')
+					envp[i] += 1;
+				paths = ft_split(envp[i], ':');
+				if (!paths)
+					return (0);
+				return (paths);
+			}
+			j++;
+		}
+	}
 	return (0);
 }
