@@ -42,13 +42,19 @@ void	command_execution(t_fd *fd)
 	{
 		child(pipe_fd);
 		if (execve(fd->chemin.file, &fd->chemin.argv[0], NULL) == -1)
+		{
+			free_cmd(&fd->chemin);
 			perror("Error, cannot execute child command.\n");
+		}
 	}
 	else if (pid1 > 0)
 	{	
 		waitpid(pid1, &status, 0);
 		parent(pipe_fd, fd);
 		if (execve(fd->chemin.file2, &fd->chemin.argv2[0], NULL) == -1)
-			perror("Error, cannot execute parent command.\n");
+		{
+			free_cmd(&fd->chemin);
+			perror("Error, cannot execute child command.\n");
+		}
 	}
 }

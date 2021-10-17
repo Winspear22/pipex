@@ -26,7 +26,7 @@ endif
 
 OBJ = *.o
 
-FLAGS = -fsanitize=address -g3 -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 
 LIBFT_A = libft.a
 LIBFT_DOSSIER = libft/

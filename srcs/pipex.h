@@ -42,6 +42,9 @@ int			paths_initialisation(t_fd *fd, int argc, char **argv, char **envp);
 
 static char	**get_paths(char **envp);
 t_cmd_data	get_all_cmd_and_files(int argc, char **argv, char **envp);
+void		free_cmd(t_cmd_data *cmd);
+void		ft_free_path(char **path);
+
 
 void		command_execution(t_fd *fd);
 
