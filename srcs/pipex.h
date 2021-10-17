@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 16:07:32 by adaloui           #+#    #+#             */
-/*   Updated: 2021/10/16 22:17:08 by adaloui          ###   ########.fr       */
+/*   Updated: 2021/10/17 19:52:11 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdio.h>
 # include "../libft/libft.h"
 # include <fcntl.h>
-# include <wait.h>
+# include <sys/wait.h>
 # include <string.h>
 # include <stdlib.h>
 

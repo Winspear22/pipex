@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 16:40:35 by adaloui           #+#    #+#             */
-/*   Updated: 2021/10/16 22:03:31 by adaloui          ###   ########.fr       */
+/*   Updated: 2021/10/17 19:56:10 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ char	*path_add(char *location, char *cmd)
 	char	*tmp;
 
 	str = ft_strjoin(location, "/");
-
 	if (!str)
 		return (NULL);
 	tmp = str;

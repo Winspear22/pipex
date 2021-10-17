@@ -6,13 +6,13 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 21:43:13 by adaloui           #+#    #+#             */
-/*   Updated: 2021/10/16 22:02:08 by adaloui          ###   ########.fr       */
+/*   Updated: 2021/10/17 19:55:59 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char		**get_cmd_location(char **envp)
+char	**get_cmd_location(char **envp)
 {
 	char	**location;
 

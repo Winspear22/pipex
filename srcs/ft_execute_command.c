@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 16:40:55 by adaloui           #+#    #+#             */
-/*   Updated: 2021/10/16 22:09:57 by adaloui          ###   ########.fr       */
+/*   Updated: 2021/10/17 19:55:39 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	command_execution(t_fd *fd)
 		child(pipe_fd);
 		if (execve(fd->chemin.file, &fd->chemin.argv[0], NULL) == -1)
 			perror("Error, cannot execute child command.\n");
-
 	}
 	else if (pid1 > 0)
 	{	
