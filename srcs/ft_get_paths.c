@@ -12,30 +12,22 @@
 
 #include "pipex.h"
 
-char	**get_cmd_paths(char **envp)
+char		**get_cmd_location(char **envp)
 {
-	char	**paths;
-	int		i;
-	int		j;
+	char	**location;
 
-	i = -1;
-	j = 0;
-	while (envp[++i])
+	while (*envp)
 	{
-		j = 0;
-		while (envp[i][j])
+		if (ft_strnstr(*envp, "PATH", 10))
 		{
-			if (ft_strnstr(&envp[i][j], "PATH", 10))
-			{
-				while (envp[i][j] != '/')
-					envp[i] += 1;
-				paths = ft_split(envp[i], ':');
-				if (!paths)
-					return (0);
-				return (paths);
-			}
-			j++;
+			while (**envp != '/')
+				*envp += 1;
+			location = ft_split(*envp, ':');
+			if (!location)
+				return (0);
+			return (location);
 		}
+		envp++;
 	}
 	return (0);
 }

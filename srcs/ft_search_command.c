@@ -12,12 +12,13 @@
 
 #include "pipex.h"
 
-char	*path_add(char *path, char *cmd)
+char	*path_add(char *location, char *cmd)
 {
 	char	*str;
 	char	*tmp;
 
-	str = ft_strjoin(path, "/");
+	str = ft_strjoin(location, "/");
+
 	if (!str)
 		return (NULL);
 	tmp = str;
@@ -28,27 +29,23 @@ char	*path_add(char *path, char *cmd)
 	return (str);
 }
 
-char	*get_file_location(char *cmd, char **paths)
+char	*get_file_location(char *cmd, char **location)
 {
 	char	*cmd_location;
 	int		fd;
 	int		i;
 
 	i = 0;
-	while (*paths)
+	while (*location)
 	{
-		cmd_location = path_add(*paths, cmd);
+		cmd_location = path_add(*location, cmd);
 		if (!cmd_location)
 			return (0);
 		fd = open(cmd_location, O_RDONLY);
 		if (fd > 0)
-		{
-			close(fd);
 			return (cmd_location);
-		}
-		close (fd);
 		free (cmd_location);
-		paths++;
+		location++;
 	}
 	return (0);
 }
@@ -58,7 +55,7 @@ t_cmd_data	get_all_cmd_and_files(int argc, char **argv, char **envp)
 	t_cmd_data	*cmd;
 	char		**paths;
 
-	paths = get_cmd_paths(envp);
+	paths = get_cmd_location(envp);
 	if (paths == NULL)
 		return (*cmd);
 	cmd = malloc(sizeof(t_cmd_data));

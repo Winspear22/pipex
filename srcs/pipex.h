@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include "../libft/libft.h"
 # include <fcntl.h>
+# include <wait.h>
 # include <string.h>
 # include <stdlib.h>
 
@@ -44,6 +45,6 @@ t_cmd_data	get_all_cmd_and_files(int argc, char **argv, char **envp);
 
 void		command_execution(t_fd *fd);
 
-char		**get_cmd_paths(char **envp);
+char		**get_cmd_location(char **envp);
 
 #endif
