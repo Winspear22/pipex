@@ -6,12 +6,14 @@
 #    By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/15 16:07:41 by adaloui           #+#    #+#              #
-#    Updated: 2021/10/16 22:16:47 by adaloui          ###   ########.fr        #
+#    Updated: 2021/10/17 15:26:38 by adaloui          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
-
+OSTYPE="`uname`"
+if [ "${OSTYPE}" == "Darwin" ]; then
+	OSTYPE=Mac
 SRC = srcs/main.c srcs/ft_check_and_init_fd.c  srcs/ft_search_command.c  srcs/ft_execute_command.c   srcs/ft_get_paths.c 
 
 OBJ = *.o
@@ -29,7 +31,7 @@ CYAN='\033[1;32m'
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@echo $(CYAN) "Compilation en cours $(NAME)" $(WHITE)
+	@echo $(CYAN) "Compilation en cours de $(NAME) sur l'OS \"$(OSTYPE)\"" $(WHITE)
 	@make -C $(LIBFT_DOSSIER)
 	@gcc $(FLAGS) $(LIBFT) $(OBJ) -o $(NAME)
 	@echo ""
