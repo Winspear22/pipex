@@ -11,14 +11,22 @@
 # **************************************************************************** #
 
 NAME = pipex
-OSTYPE="`uname`"
-if [ "${OSTYPE}" == "Darwin" ]; then
-	OSTYPE=Mac
-SRC = srcs/main.c srcs/ft_check_and_init_fd.c  srcs/ft_search_command.c  srcs/ft_execute_command.c   srcs/ft_get_paths.c 
+NAME_OS = $(shell uname)
+
+ifeq ($(NAME_OS), Darwin)
+	SRC = srcs/main.c srcs/ft_check_and_init_fd.c  srcs/ft_search_command.c  srcs/ft_execute_command.c   srcs/ft_get_paths.c 
+	NAME_OS = MAC
+endif
+ifeq ($(NAME_OS), Linux)
+	SRC = srcs/main.c srcs/ft_check_and_init_fd.c  srcs/ft_search_command.c srcs/ft_execute_command.c  srcs/ft_get_paths.c \
+	libft/ft_putchar_fd.c libft/ft_putstr_fd.c libft/ft_strjoin.c libft/ft_split.c \
+	libft/ft_strlcpy.c libft/ft_strnstr.c libft/ft_strlen.c
+
+endif
 
 OBJ = *.o
 
-FLAGS =  -fsanitize=address -g3 -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 
 LIBFT_A = libft.a
 LIBFT_DOSSIER = libft/
@@ -31,7 +39,7 @@ CYAN='\033[1;32m'
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@echo $(CYAN) "Compilation en cours de $(NAME) sur l'OS \"$(OSTYPE)\"" $(WHITE)
+	@echo $(CYAN) "Compilation en cours de $(NAME) sur l'OS \"$(NAME_OS)\"" $(WHITE)
 	@make -C $(LIBFT_DOSSIER)
 	@gcc $(FLAGS) $(LIBFT) $(OBJ) -o $(NAME)
 	@echo ""
