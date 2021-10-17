@@ -32,9 +32,9 @@ LIBFT_A = libft.a
 LIBFT_DOSSIER = libft/
 LIBFT  = $(addprefix $(LIBFT_DOSSIER), $(LIBFT_A))
 
-WHITE='\033[0m'
-BLUE='\033[36m'
-CYAN='\033[1;32m'
+WHITE ='\033[0m'
+BLUE ='\033[36m'
+CYAN ='\033[1;32m'
 
 all: $(NAME)
 
