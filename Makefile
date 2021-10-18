@@ -6,7 +6,7 @@
 #    By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/15 16:07:41 by adaloui           #+#    #+#              #
-#    Updated: 2021/10/17 15:26:38 by adaloui          ###   ########.fr        #
+#    Updated: 2021/10/18 17:48:34 by adaloui          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ endif
 
 OBJ = *.o
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -fsanitize=address -g3  -Wall -Wextra -Werror
 
 LIBFT_A = libft.a
 LIBFT_DOSSIER = libft/

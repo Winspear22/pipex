@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 16:40:44 by adaloui           #+#    #+#             */
-/*   Updated: 2021/10/16 21:57:27 by adaloui          ###   ########.fr       */
+/*   Updated: 2021/10/18 17:51:11 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	check_arg(int argc, char **argv)
 {
-	if (argc < 5)
+	if (argc != 5)
 	{
-		ft_putstr_fd("Error : There's not enough arguments ! \n", 0);
+		ft_putstr_fd("Error : Not enough or too much arguments ! \n", 0);
 		return (0);
 	}
 	else if (access(argv[1], R_OK) == -1)

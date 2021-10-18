@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 16:40:55 by adaloui           #+#    #+#             */
-/*   Updated: 2021/10/17 19:55:39 by adaloui          ###   ########.fr       */
+/*   Updated: 2021/10/18 18:04:04 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,18 @@ void	parent(int *pipe_fd, t_fd *fd)
 	dup2(fd->fd_out, 1);
 }
 
+void	free_child(t_fd *fd)
+{
+	free_cmd(&fd->chemin);
+	perror("Error, cannot execute child command. \n");
+}
+
+void	free_parent(t_fd *fd)
+{
+	free_cmd(&fd->chemin);
+	perror("Error, cannot execute father command. \n");
+}
+
 void	command_execution(t_fd *fd)
 {
 	int		pipe_fd[2];
@@ -42,19 +54,13 @@ void	command_execution(t_fd *fd)
 	{
 		child(pipe_fd);
 		if (execve(fd->chemin.file, &fd->chemin.argv[0], NULL) == -1)
-		{
-			free_cmd(&fd->chemin);
-			perror("Error, cannot execute child command.\n");
-		}
+			free_child(fd);
 	}
 	else if (pid1 > 0)
 	{	
 		waitpid(pid1, &status, 0);
 		parent(pipe_fd, fd);
 		if (execve(fd->chemin.file2, &fd->chemin.argv2[0], NULL) == -1)
-		{
-			free_cmd(&fd->chemin);
-			perror("Error, cannot execute child command.\n");
-		}
+			free_parent(fd);
 	}
 }

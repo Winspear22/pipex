@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 16:40:35 by adaloui           #+#    #+#             */
-/*   Updated: 2021/10/17 19:56:10 by adaloui          ###   ########.fr       */
+/*   Updated: 2021/10/18 18:00:11 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ char	*get_file_location(char *cmd, char **location)
 
 void	free_cmd(t_cmd_data *cmd)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
-	while(cmd->argv[i] && cmd->argv2[j])
+	while (cmd->argv[i] && cmd->argv2[j])
 	{
 		free(cmd->argv[i]);
 		free(cmd->argv2[j]);
@@ -69,34 +69,15 @@ void	free_cmd(t_cmd_data *cmd)
 
 void	ft_free_path(char **path)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(path[i])
+	while (path[i])
 	{
 		free(path[i]);
 		i++;
 	}
 }
-/*t_cmd_data      get_all_cmd_and_files(int argc, char **argv, char **envp)
-{
-        t_cmd_data      *cmd;
-        char            **paths;
-
-        paths = get_cmd_location(envp);
-        if (paths == NULL)
-                return (*cmd);
-        cmd = malloc(sizeof(t_cmd_data));
-        if (cmd != NULL)
-        {
-                cmd->argv = ft_split(argv[2], ' ');
-                cmd->file = get_file_location(cmd->argv[0], paths);
-                cmd->argv2 = ft_split(argv[3], ' ');
-                cmd->file2 = get_file_location(cmd->argv2[0], paths);
-        }
-        return (*cmd);
-}*/
-
 
 t_cmd_data	get_all_cmd_and_files(int argc, char **argv, char **envp)
 {
@@ -108,7 +89,7 @@ t_cmd_data	get_all_cmd_and_files(int argc, char **argv, char **envp)
 	{
 		ft_free_path(paths);
 		cmd = NULL;
-		return(*cmd);
+		return (*cmd);
 	}
 	cmd = malloc(sizeof(t_cmd_data));
 	if (!cmd)
