@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 16:07:32 by adaloui           #+#    #+#             */
-/*   Updated: 2021/10/18 18:04:17 by adaloui          ###   ########.fr       */
+/*   Updated: 2021/10/19 21:09:43 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_fd
 	t_cmd_data		chemin;
 }				t_fd;
 
-int			check_arg(int argc, char **argv);
+int			check_arg(int argc, char **argv, char **envp);
 int			fd_initialisation(t_fd *fd, int argc, char **argv);
 int			paths_initialisation(t_fd *fd, int argc, char **argv, char **envp);
 
@@ -48,5 +48,10 @@ void		ft_free_path(char **path);
 void		command_execution(t_fd *fd);
 
 char		**get_cmd_location(char **envp);
+
+void		ft_free_path(char **path);
+int			error_cmd_handling(char *message);
+void		*error_cmd(char *message);
+void		free_cmd(t_cmd_data *cmd);
 
 #endif

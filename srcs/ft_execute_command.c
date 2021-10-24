@@ -6,61 +6,62 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 16:40:55 by adaloui           #+#    #+#             */
-/*   Updated: 2021/10/18 18:04:04 by adaloui          ###   ########.fr       */
+/*   Updated: 2021/10/19 21:12:57 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	child(int *pipe_fd)
+void	ft_child(t_fd *folder, int *fd)
 {
-	close(pipe_fd[0]);
-	dup2(pipe_fd[1], 1);
-	close(pipe_fd[1]);
+	close(folder->fd_out);
+	dup2(folder->fd_in, STDIN_FILENO);
+	dup2(fd[1], 1);
+	close(folder->fd_in);
 }
 
-void	parent(int *pipe_fd, t_fd *fd)
+void	ft_parent(t_fd *folder, int *fd)
 {
-	close(pipe_fd[1]);
-	dup2(fd->fd_in, 0);
-	dup2(pipe_fd[0], 0);
-	dup2(fd->fd_out, 1);
+	close(folder->fd_in);
+	dup2(fd[0], 0);
+	dup2(folder->fd_out, STDOUT_FILENO);
+	close(folder->fd_out); 
+	close(fd[0]);
+	close(fd[1]);
 }
 
-void	free_child(t_fd *fd)
+void	free_child(t_fd *folder)
 {
-	free_cmd(&fd->chemin);
+	free_cmd(&folder->chemin);
 	perror("Error, cannot execute child command. \n");
 }
 
-void	free_parent(t_fd *fd)
+void	free_parent(t_fd *folder)
 {
-	free_cmd(&fd->chemin);
+	free_cmd(&folder->chemin);
 	perror("Error, cannot execute father command. \n");
 }
 
-void	command_execution(t_fd *fd)
+void	command_execution(t_fd *folder)
 {
-	int		pipe_fd[2];
-	pid_t	pid1;
-	int		status;
+	int	fd[2];
+	int pid;
+	int status;
 
-	if (pipe(pipe_fd) == -1)
-		return (perror("Error cannot create pipe\n"));
-	pid1 = fork();
-	if (pid1 < 0)
-		return (perror("Error could not fork\n"));
-	else if (pid1 == 0)
+	pipe(fd);
+	pid = fork();
+	if (pid < 0)
+		perror("Fork error");
+	else if (pid == 0)
 	{
-		child(pipe_fd);
-		if (execve(fd->chemin.file, &fd->chemin.argv[0], NULL) == -1)
-			free_child(fd);
+		ft_child(folder, fd);
+		if (execve(folder->chemin.file, folder->chemin.argv, NULL) == -1);
+			free_child(folder);
 	}
-	else if (pid1 > 0)
-	{	
-		waitpid(pid1, &status, 0);
-		parent(pipe_fd, fd);
-		if (execve(fd->chemin.file2, &fd->chemin.argv2[0], NULL) == -1)
-			free_parent(fd);
+	else
+	{
+		ft_parent(folder, fd);
+		if (execve(folder->chemin.file2, folder->chemin.argv2, NULL) == -1);
+			free_parent(folder);
 	}
 }

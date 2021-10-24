@@ -6,7 +6,7 @@
 #    By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/15 16:07:41 by adaloui           #+#    #+#              #
-#    Updated: 2021/10/18 17:48:34 by adaloui          ###   ########.fr        #
+#    Updated: 2021/10/18 18:19:43 by adaloui          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,11 @@ NAME = pipex
 NAME_OS = $(shell uname)
 
 ifeq ($(NAME_OS), Darwin)
-	SRC = srcs/main.c srcs/ft_check_and_init_fd.c  srcs/ft_search_command.c  srcs/ft_execute_command.c   srcs/ft_get_paths.c 
+	SRC = srcs/main.c srcs/ft_check_and_init_fd.c  srcs/ft_search_command.c  srcs/ft_execute_command.c srcs/ft_get_paths.c srcs/ft_free_and_errors.c
 	NAME_OS = MAC
 endif
 ifeq ($(NAME_OS), Linux)
-	SRC = srcs/main.c srcs/ft_check_and_init_fd.c  srcs/ft_search_command.c srcs/ft_execute_command.c  srcs/ft_get_paths.c \
+	SRC = srcs/main.c srcs/ft_check_and_init_fd.c  srcs/ft_search_command.c srcs/ft_execute_command.c  srcs/ft_get_paths.c srcs/ft_free_and_errors.c \
 	libft/ft_putchar_fd.c libft/ft_putstr_fd.c libft/ft_strjoin.c libft/ft_split.c \
 	libft/ft_strlcpy.c libft/ft_strnstr.c libft/ft_strlen.c
 

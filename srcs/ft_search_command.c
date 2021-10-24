@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 16:40:35 by adaloui           #+#    #+#             */
-/*   Updated: 2021/10/18 18:00:11 by adaloui          ###   ########.fr       */
+/*   Updated: 2021/10/19 21:23:18 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,55 +28,26 @@ char	*path_add(char *location, char *cmd)
 	return (str);
 }
 
-char	*get_file_location(char *cmd, char **location)
+char	*get_file_location(char *cmd, char **location, t_cmd_data *cmd2)
 {
 	char	*cmd_location;
 	int		fd;
-	int		i;
 
-	i = 0;
 	while (*location)
 	{
 		cmd_location = path_add(*location, cmd);
 		if (!cmd_location)
-			return (0);
+			return (error_cmd("You need to write a command.\n"));
 		fd = open(cmd_location, O_RDONLY);
 		if (fd > 0)
 			return (cmd_location);
 		free (cmd_location);
 		location++;
 	}
-	return (0);
-}
-
-void	free_cmd(t_cmd_data *cmd)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (cmd->argv[i] && cmd->argv2[j])
-	{
-		free(cmd->argv[i]);
-		free(cmd->argv2[j]);
-		i++;
-		j++;
-	}
-	free(cmd->file);
-	free(cmd->file2);
-}
-
-void	ft_free_path(char **path)
-{
-	int	i;
-
-	i = 0;
-	while (path[i])
-	{
-		free(path[i]);
-		i++;
-	}
+	//free_cmd(cmd2);
+	error_cmd("Error: your command does not exist.\n");
+	//exit (0);
+	return (NULL);
 }
 
 t_cmd_data	get_all_cmd_and_files(int argc, char **argv, char **envp)
@@ -88,7 +59,6 @@ t_cmd_data	get_all_cmd_and_files(int argc, char **argv, char **envp)
 	if (paths == NULL)
 	{
 		ft_free_path(paths);
-		cmd = NULL;
 		return (*cmd);
 	}
 	cmd = malloc(sizeof(t_cmd_data));
@@ -98,8 +68,13 @@ t_cmd_data	get_all_cmd_and_files(int argc, char **argv, char **envp)
 		return (*cmd);
 	}
 	cmd->argv = ft_split(argv[2], ' ');
-	cmd->file = get_file_location(cmd->argv[0], paths);
+	cmd->file = get_file_location(cmd->argv[0], paths, cmd);
 	cmd->argv2 = ft_split(argv[3], ' ');
-	cmd->file2 = get_file_location(cmd->argv2[0], paths);
+	cmd->file2 = get_file_location(cmd->argv2[0], paths, cmd);
+	if (!cmd->file || !cmd->file2)
+	{
+		free_cmd(cmd);
+		exit(0);
+	}
 	return (*cmd);
 }
