@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 16:40:35 by adaloui           #+#    #+#             */
-/*   Updated: 2021/10/19 21:23:18 by adaloui          ###   ########.fr       */
+/*   Updated: 2021/10/25 15:26:56 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,7 @@ char	*get_file_location(char *cmd, char **location, t_cmd_data *cmd2)
 		free (cmd_location);
 		location++;
 	}
-	//free_cmd(cmd2);
 	error_cmd("Error: your command does not exist.\n");
-	//exit (0);
 	return (NULL);
 }
 

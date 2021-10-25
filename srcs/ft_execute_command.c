@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 16:40:55 by adaloui           #+#    #+#             */
-/*   Updated: 2021/10/19 21:12:57 by adaloui          ###   ########.fr       */
+/*   Updated: 2021/10/25 15:30:35 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_parent(t_fd *folder, int *fd)
 	close(folder->fd_in);
 	dup2(fd[0], 0);
 	dup2(folder->fd_out, STDOUT_FILENO);
-	close(folder->fd_out); 
+	close(folder->fd_out);
 	close(fd[0]);
 	close(fd[1]);
 }
@@ -45,8 +45,8 @@ void	free_parent(t_fd *folder)
 void	command_execution(t_fd *folder)
 {
 	int	fd[2];
-	int pid;
-	int status;
+	int	pid;
+	int	status;
 
 	pipe(fd);
 	pid = fork();
@@ -55,13 +55,13 @@ void	command_execution(t_fd *folder)
 	else if (pid == 0)
 	{
 		ft_child(folder, fd);
-		if (execve(folder->chemin.file, folder->chemin.argv, NULL) == -1);
+		if (execve(folder->chemin.file, folder->chemin.argv, NULL) == -1)
 			free_child(folder);
 	}
 	else
 	{
 		ft_parent(folder, fd);
-		if (execve(folder->chemin.file2, folder->chemin.argv2, NULL) == -1);
+		if (execve(folder->chemin.file2, folder->chemin.argv2, NULL) == -1)
 			free_parent(folder);
 	}
 }
