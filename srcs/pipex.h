@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 16:07:32 by adaloui           #+#    #+#             */
-/*   Updated: 2021/10/19 21:09:43 by adaloui          ###   ########.fr       */
+/*   Updated: 2021/10/25 18:47:12 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ static char	**get_paths(char **envp);
 t_cmd_data	get_all_cmd_and_files(int argc, char **argv, char **envp);
 void		free_cmd(t_cmd_data *cmd);
 void		ft_free_path(char **path);
+char		*get_file_location(char *cmd, char **location);
+int			ft_check_arg_content(char **argv, char **envp);
+
 
 void		command_execution(t_fd *fd);
 

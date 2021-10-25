@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 16:40:44 by adaloui           #+#    #+#             */
-/*   Updated: 2021/10/19 21:18:41 by adaloui          ###   ########.fr       */
+/*   Updated: 2021/10/25 18:50:41 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ int	check_arg(int argc, char **argv, char **envp)
 		ft_putstr_fd("Error : no permission to access the file \"infile\". \n", 0);
 		return (0);
 	}
+	else if (ft_check_arg_content(argv, envp) == 0)
+		return (0);
+	printf("nono");
 	return (1);
 }
-
 int	fd_initialisation(t_fd *fd, int argc, char **argv)
 {
 	fd->fd_in = open(argv[1], O_RDONLY);
