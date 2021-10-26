@@ -32,13 +32,15 @@ void	ft_parent(t_fd *folder, int *fd)
 
 void	free_child(t_fd *folder)
 {
-	free_cmd(&folder->chemin);
+	free(folder->chemin.file);
+	ft_free_path(folder->chemin.argv);
 	perror("Error, cannot execute child command. \n");
 }
 
 void	free_parent(t_fd *folder)
 {
-	free_cmd(&folder->chemin);
+	free(folder->chemin.file2);
+	ft_free_path(folder->chemin.argv2);
 	perror("Error, cannot execute father command. \n");
 }
 
@@ -52,13 +54,13 @@ void	command_execution(t_fd *folder)
 	pid = fork();
 	if (pid < 0)
 		perror("Fork error");
-	else if (pid == 0)
+	else if (pid == 0 && folder->chemin.file != NULL)
 	{
 		ft_child(folder, fd);
 		if (execve(folder->chemin.file, folder->chemin.argv, NULL) == -1)
 			free_child(folder);
 	}
-	else
+	else if (pid > 0 && folder->chemin.file2 != NULL)
 	{
 		ft_parent(folder, fd);
 		if (execve(folder->chemin.file2, folder->chemin.argv2, NULL) == -1)

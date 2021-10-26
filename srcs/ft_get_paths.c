@@ -23,11 +23,6 @@ char	**get_cmd_location(char **envp)
 			while (**envp != '/')
 				*envp += 1;
 			location = ft_split(*envp, ':');
-			if (location == NULL)
-			{
-				ft_free_path(location);
-				return (NULL);
-			}
 			return (location);
 		}
 		envp++;

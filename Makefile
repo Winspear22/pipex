@@ -20,7 +20,7 @@ endif
 ifeq ($(NAME_OS), Linux)
 	SRC = srcs/main.c srcs/ft_check_and_init_fd.c  srcs/ft_search_command.c srcs/ft_execute_command.c  srcs/ft_get_paths.c srcs/ft_free_and_errors.c \
 	libft/ft_putchar_fd.c libft/ft_putstr_fd.c libft/ft_strjoin.c libft/ft_split.c \
-	libft/ft_strlcpy.c libft/ft_strnstr.c libft/ft_strlen.c
+	libft/ft_strlcpy.c libft/ft_strnstr.c libft/ft_strlen.c libft/ft_strncmp.c
 
 endif
 
