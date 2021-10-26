@@ -32,59 +32,80 @@ char	*get_file_location(char *cmd, char **location)
 {
 	char	*cmd_location;
 	int		fd;
+	char 	*str;
+	int		i;
 
+	i = 0;
+	str = "Error";
 	while (*location)
 	{
 		cmd_location = path_add(*location, cmd);
 		fd = open(cmd_location, O_RDONLY);
 		if (fd > 0)
+		{	
+			close(fd);
 			return (cmd_location);
+		}
 		free(cmd_location);
 		location++;
 	}
 	error_cmd("Error: your command does not exist.\n");
-	ft_free_path(location);
-	free(cmd);
-	return (NULL);
+	return (str);
 }
 
-char **ft_cut_argv(char **argv)
+t_cmd_data	*parse_cmd(char **argv, char **paths, t_cmd_data *cmd)
 {
-	char **cmd;
-
-	while (argv[0])
+	if (argv[2][0] == '/')
 	{
-		cmd = ft_split(argv[0], '/');
-		argv++;
+		cmd->argv = ft_split(argv[2], '/');
+		cmd->argv[0] = cmd->argv[1];
+		cmd->argv[1] = NULL;
+		cmd->file = get_file_location(cmd->argv[0], paths);
 	}
-	argv[0] = cmd[1]; 
-	return (argv);
+	if (argv[3][0] == '/')
+	{
+		cmd->argv2 = ft_split(argv[3], '/');
+		cmd->argv2[0] = cmd->argv2[1];
+		cmd->argv2[1] = NULL;
+		cmd->file2 = get_file_location(cmd->argv2[0], paths);
+	}
+	if (argv[2][0] != '/')
+	{
+		cmd->argv = ft_split(argv[2], ' ');
+		cmd->file = get_file_location(cmd->argv[0], paths);
+	}
+	if (argv[3][0] != '/')
+	{
+		cmd->argv2 = ft_split(argv[3], ' ');
+		cmd->file2 = get_file_location(cmd->argv2[0], paths);
+	}
+	ft_free_path(paths);
+	return (cmd);
 }
 
-t_cmd_data	get_all_cmd_and_files(int argc, char **argv, char **envp)
+t_cmd_data *init_cmd(void)
+{
+	t_cmd_data *new;
+
+	new = malloc(sizeof(t_cmd_data));
+	if (new == NULL)
+		return (NULL);
+	new->file = NULL;
+	new->file2 = NULL;
+	new->argv = NULL;
+	new->argv2 = NULL;
+	return (new);
+}
+
+t_cmd_data	*get_all_cmd_and_files(int argc, char **argv, char **envp)
 {
 	t_cmd_data	*cmd;
 	char		**paths;
 
 	paths = get_cmd_location(envp);
-	if (paths == NULL)
-	{
-		ft_free_path(paths);
-		return (*cmd);
-	}
-	cmd = malloc(sizeof(char **) * 2 + sizeof(char *) * 2);
-	if (!cmd)
-	{
-		free_cmd(cmd);
-		return (*cmd);
-	}
-	cmd->argv = ft_split(argv[2], ' ');
-	cmd->argv2 = ft_split(argv[3], ' ');
-	if (cmd->argv[0][0] == '/')
-		cmd->argv = ft_cut_argv(cmd->argv);
-	if (cmd->argv2[0][0] == '/')
-		cmd->argv2 = ft_cut_argv(cmd->argv2);
-	cmd->file = get_file_location(cmd->argv[0], paths);
-	cmd->file2 = get_file_location(cmd->argv2[0], paths);
-	return (*cmd);
+	cmd = init_cmd();
+	if (cmd == NULL)
+		return (NULL);
+	cmd = parse_cmd(argv, paths, cmd);
+	return (cmd);
 }

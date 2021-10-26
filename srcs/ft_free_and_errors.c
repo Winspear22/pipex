@@ -14,20 +14,8 @@
 
 void	free_cmd(t_cmd_data *cmd)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (cmd->argv[i] && cmd->argv2[j])
-	{
-		free(cmd->argv[i]);
-		free(cmd->argv2[j]);
-		i++;
-		j++;
-	}
-	free(cmd->file);
-	free(cmd->file2);
+	ft_free_path(cmd->argv);
+	ft_free_path(cmd->argv2);
 }
 
 void	ft_free_path(char **path)
@@ -40,6 +28,7 @@ void	ft_free_path(char **path)
 		free(path[i]);
 		i++;
 	}
+	free(path);
 }
 
 int	error_cmd_handling(char *message)

@@ -27,6 +27,5 @@ char	**get_cmd_location(char **envp)
 		}
 		envp++;
 	}
-	ft_free_path(location);
 	return (NULL);
 }

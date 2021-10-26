@@ -23,5 +23,6 @@ int	main(int argc, char **argv, char **envp)
 	if (paths_initialisation(&fd, argc, argv, envp) == 0)
 		return (0);
 	command_execution(&fd);
+	free(fd.chemin);	
 	return (0);
 }

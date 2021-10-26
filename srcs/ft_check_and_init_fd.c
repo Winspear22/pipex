@@ -39,7 +39,7 @@ int	check_arg(int argc, char **argv, char **envp)
 
 int	fd_initialisation(t_fd *fd, int argc, char **argv)
 {
-	const char *str;
+	char *str;
 
 	str = "/dev/stdin";
 	if (ft_strncmp(argv[1], str, 10) == 0)

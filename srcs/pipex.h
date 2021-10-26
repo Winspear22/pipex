@@ -33,17 +33,15 @@ typedef struct s_fd
 {
 	int				fd_in;
 	int				fd_out;
-	t_cmd_data		chemin;
+	t_cmd_data		*chemin;
 }				t_fd;
 
 int			check_arg(int argc, char **argv, char **envp);
 int			fd_initialisation(t_fd *fd, int argc, char **argv);
 int			paths_initialisation(t_fd *fd, int argc, char **argv, char **envp);
-int			ft_strncmp(const char *s1, const char *s2, size_t n);
-
 
 static char	**get_paths(char **envp);
-t_cmd_data	get_all_cmd_and_files(int argc, char **argv, char **envp);
+t_cmd_data	*get_all_cmd_and_files(int argc, char **argv, char **envp);
 void		free_cmd(t_cmd_data *cmd);
 void		ft_free_path(char **path);
 
@@ -51,9 +49,7 @@ void		command_execution(t_fd *fd);
 
 char		**get_cmd_location(char **envp);
 
-void		ft_free_path(char **path);
 int			error_cmd_handling(char *message);
 void		*error_cmd(char *message);
-void		free_cmd(t_cmd_data *cmd);
 
 #endif
