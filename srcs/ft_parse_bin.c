@@ -1,8 +1,18 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parse_bin.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adaloui <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/27 19:15:56 by adaloui           #+#    #+#             */
+/*   Updated: 2021/10/27 19:17:21 by adaloui          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "pipex.h"
 
-t_cmd_data *parse_cmd_bin_child(char **argv, char **paths, t_cmd_data *cmd)
+t_cmd_data	*parse_cmd_bin_child(char **argv, char **paths, t_cmd_data *cmd)
 {
 	if (ft_strncmp(argv[2], "/bin/", 5) == 0)
 	{
@@ -20,7 +30,7 @@ t_cmd_data *parse_cmd_bin_child(char **argv, char **paths, t_cmd_data *cmd)
 	return (cmd);
 }
 
-t_cmd_data *parse_cmd_bin_father(char **argv, char **paths, t_cmd_data *cmd)
+t_cmd_data	*parse_cmd_bin_father(char **argv, char **paths, t_cmd_data *cmd)
 {
 	if (ft_strncmp(argv[3], "/bin/", 5) == 0)
 	{

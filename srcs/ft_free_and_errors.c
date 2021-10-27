@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 20:58:00 by adaloui           #+#    #+#             */
-/*   Updated: 2021/10/19 20:59:12 by adaloui          ###   ########.fr       */
+/*   Updated: 2021/10/27 19:16:54 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,6 @@ void	ft_free_path(char **path)
 	free(path);
 }
 
-void	ft_free_path_2(char **path)
-{
-	int	i;
-
-	i = 1;
-	while (path[i])
-	{
-		free(path[i]);
-		i++;
-	}
-	//free(path);
-}
-
 int	error_cmd_handling(char *message, char *str)
 {
 	if (1)
@@ -57,7 +44,6 @@ int	error_cmd_handling(char *message, char *str)
 
 void	*error_cmd(char *message, char *str)
 {
-
 	error_cmd_handling(message, str);
 	return (NULL);
 }

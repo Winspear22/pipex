@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 16:40:55 by adaloui           #+#    #+#             */
-/*   Updated: 2021/10/27 14:34:28 by adaloui          ###   ########.fr       */
+/*   Updated: 2021/10/27 19:24:51 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,15 @@ void	ft_parent(t_fd *folder, int *fd)
 
 void	free_child(t_fd *folder)
 {
-	if (folder->chemin->file2 == "Error")
-	{	
+	if (ft_strncmp(folder->chemin->file2, "Error", 5) == 0)
 		ft_free_path(folder->chemin->argv2);
-		free(folder->chemin->file2);
-	}
 	exit(0);
 }
 
 void	free_parent(t_fd *folder)
 {
-	if (folder->chemin->file == "Error")
-	{
+	if (ft_strncmp(folder->chemin->file, "Error", 5) == 0)
 		ft_free_path(folder->chemin->argv);
-		free(folder->chemin->file);
-	}
 	exit(0);
 }
 

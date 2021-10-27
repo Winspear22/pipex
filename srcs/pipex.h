@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 16:07:32 by adaloui           #+#    #+#             */
-/*   Updated: 2021/10/27 14:51:07 by adaloui          ###   ########.fr       */
+/*   Updated: 2021/10/27 19:18:47 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void		free_cmd(t_cmd_data *cmd);
 void		ft_free_path(char **path);
 void		ft_free_path_2(char **path);
 
-
 void		command_execution(t_fd *fd);
 
 char		**get_cmd_location(char **envp);
@@ -54,10 +53,8 @@ char		**get_cmd_location(char **envp);
 int			error_cmd_handling(char *message, char *str);
 void		*error_cmd(char *message, char *str);
 
-t_cmd_data *parse_cmd_bin_child(char **argv, char **paths, t_cmd_data *cmd);
-t_cmd_data *parse_cmd_bin_father(char **argv, char **paths, t_cmd_data *cmd);
-char	*get_file_location(char *cmd, char **location);
-
-
+t_cmd_data	*parse_cmd_bin_child(char **argv, char **paths, t_cmd_data *cmd);
+t_cmd_data	*parse_cmd_bin_father(char **argv, char **paths, t_cmd_data *cmd);
+char		*get_file_location(char *cmd, char **location);
 
 #endif
