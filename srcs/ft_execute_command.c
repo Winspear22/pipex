@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 16:40:55 by adaloui           #+#    #+#             */
-/*   Updated: 2021/10/25 15:30:35 by adaloui          ###   ########.fr       */
+/*   Updated: 2021/10/27 14:34:28 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	free_child(t_fd *folder)
 
 void	free_parent(t_fd *folder)
 {
-	ft_free_path(folder->chemin->argv);	
+	ft_free_path(folder->chemin->argv);
 	perror("Error, cannot execute father command. \n");
 	exit(0);
 }

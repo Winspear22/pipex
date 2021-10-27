@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 16:40:35 by adaloui           #+#    #+#             */
-/*   Updated: 2021/10/25 15:26:56 by adaloui          ###   ########.fr       */
+/*   Updated: 2021/10/27 14:39:14 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,8 @@ char	*get_file_location(char *cmd, char **location)
 {
 	char	*cmd_location;
 	int		fd;
-	char 	*str;
-	int		i;
+	char	*str;
 
-	i = 0;
 	str = "Error";
 	while (*location)
 	{
@@ -79,13 +77,12 @@ t_cmd_data	*parse_cmd(char **argv, char **paths, t_cmd_data *cmd)
 		cmd->argv2 = ft_split(argv[3], ' ');
 		cmd->file2 = get_file_location(cmd->argv2[0], paths);
 	}
-	ft_free_path(paths);
 	return (cmd);
 }
 
-t_cmd_data *init_cmd(void)
+t_cmd_data	*init_cmd(void)
 {
-	t_cmd_data *new;
+	t_cmd_data	*new;
 
 	new = malloc(sizeof(t_cmd_data));
 	if (new == NULL)
@@ -107,5 +104,6 @@ t_cmd_data	*get_all_cmd_and_files(int argc, char **argv, char **envp)
 	if (cmd == NULL)
 		return (NULL);
 	cmd = parse_cmd(argv, paths, cmd);
+	ft_free_path(paths);
 	return (cmd);
 }

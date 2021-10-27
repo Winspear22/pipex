@@ -6,7 +6,7 @@
 /*   By: adaloui <adaloui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 16:07:32 by adaloui           #+#    #+#             */
-/*   Updated: 2021/10/19 21:09:43 by adaloui          ###   ########.fr       */
+/*   Updated: 2021/10/27 14:51:07 by adaloui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_fd
 }				t_fd;
 
 int			check_arg(int argc, char **argv, char **envp);
-int			fd_initialisation(t_fd *fd, int argc, char **argv);
+int			fd_initialisation(t_fd *fd, int argc, char **argv, char **envp);
 int			paths_initialisation(t_fd *fd, int argc, char **argv, char **envp);
 
 static char	**get_paths(char **envp);
