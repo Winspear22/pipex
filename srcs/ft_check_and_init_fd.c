@@ -39,23 +39,6 @@ int	check_arg(int argc, char **argv, char **envp)
 
 int	fd_initialisation(t_fd *fd, int argc, char **argv, char **envp)
 {
-	char	*str;
-	char	*str2;
-	char	*str3;
-
-	str = "/dev/stdin";
-	str2 = "/dev/stdout";
-	str3 = "/dev/random";
-	if ((ft_strncmp(argv[1], str, 10) == 0)
-		|| (ft_strncmp(argv[1], str2, 11) == 0
-			|| (ft_strncmp(argv[1], str3, 11) == 0)))
-	{
-		fd->fd_in = open(argv[1], O_RDONLY);
-		fd->fd_out = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0666);
-		fd->chemin = get_all_cmd_and_files(argc, argv, envp);
-		command_execution(fd);
-		exit(0);
-	}
 	fd->fd_in = open(argv[1], O_RDONLY);
 	fd->fd_out = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	if (fd->fd_out < 0)

@@ -31,15 +31,33 @@ void	ft_free_path(char **path)
 	free(path);
 }
 
-int	error_cmd_handling(char *message)
+void	ft_free_path_2(char **path)
+{
+	int	i;
+
+	i = 1;
+	while (path[i])
+	{
+		free(path[i]);
+		i++;
+	}
+	//free(path);
+}
+
+int	error_cmd_handling(char *message, char *str)
 {
 	if (1)
+	{
 		write(2, message, ft_strlen(message));
+		write(2, str, ft_strlen(str));
+		write(2, "\n", 1);
+	}
 	return (0);
 }
 
-void	*error_cmd(char *message)
+void	*error_cmd(char *message, char *str)
 {
-	error_cmd_handling(message);
+
+	error_cmd_handling(message, str);
 	return (NULL);
 }

@@ -16,14 +16,14 @@ void	ft_child(t_fd *folder, int *fd)
 {
 	close(folder->fd_out);
 	dup2(folder->fd_in, STDIN_FILENO);
-	dup2(fd[1], 1);
+	dup2(fd[1], STDOUT_FILENO);
 	close(folder->fd_in);
 }
 
 void	ft_parent(t_fd *folder, int *fd)
 {
 	close(folder->fd_in);
-	dup2(fd[0], 0);
+	dup2(fd[0], STDIN_FILENO);
 	dup2(folder->fd_out, STDOUT_FILENO);
 	close(folder->fd_out);
 	close(fd[0]);
@@ -32,15 +32,21 @@ void	ft_parent(t_fd *folder, int *fd)
 
 void	free_child(t_fd *folder)
 {
-	ft_free_path(folder->chemin->argv2);
-	perror("Error, cannot execute child command. \n");
+	if (folder->chemin->file2 == "Error")
+	{	
+		ft_free_path(folder->chemin->argv2);
+		free(folder->chemin->file2);
+	}
 	exit(0);
 }
 
 void	free_parent(t_fd *folder)
 {
-	ft_free_path(folder->chemin->argv);
-	perror("Error, cannot execute father command. \n");
+	if (folder->chemin->file == "Error")
+	{
+		ft_free_path(folder->chemin->argv);
+		free(folder->chemin->file);
+	}
 	exit(0);
 }
 

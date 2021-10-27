@@ -44,12 +44,20 @@ static char	**get_paths(char **envp);
 t_cmd_data	*get_all_cmd_and_files(int argc, char **argv, char **envp);
 void		free_cmd(t_cmd_data *cmd);
 void		ft_free_path(char **path);
+void		ft_free_path_2(char **path);
+
 
 void		command_execution(t_fd *fd);
 
 char		**get_cmd_location(char **envp);
 
-int			error_cmd_handling(char *message);
-void		*error_cmd(char *message);
+int			error_cmd_handling(char *message, char *str);
+void		*error_cmd(char *message, char *str);
+
+t_cmd_data *parse_cmd_bin_child(char **argv, char **paths, t_cmd_data *cmd);
+t_cmd_data *parse_cmd_bin_father(char **argv, char **paths, t_cmd_data *cmd);
+char	*get_file_location(char *cmd, char **location);
+
+
 
 #endif
